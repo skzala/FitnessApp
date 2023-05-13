@@ -2,11 +2,17 @@ package com.skzala.fitnessapp;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.skzala.fitnessapp.dailyWokout.dailyWorkout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,8 @@ public class exercisefrags extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    CardView crdDailyWorkout, crdSchdules, crdCustomize;
+
 
     public exercisefrags() {
         // Required empty public constructor
@@ -58,7 +66,44 @@ public class exercisefrags extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_exercisefrags, container, false);
+        // Get the FragmentManager from the parent activity
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+        // Find your CardView objects by their IDs
+
+        crdDailyWorkout = view.findViewById(R.id.crdDailyWorkout);
+        crdSchdules = view.findViewById(R.id.crdSchedules);
+        crdCustomize = view.findViewById(R.id.crdCustom);
+        // Set an onClickListener for each CardView object
+        crdDailyWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new instance of your exercise fragment
+                dailyWorkout dailyWorkout = new dailyWorkout();
+
+                // Begin a new fragment transaction and replace the current fragment with your exercise fragment
+                FragmentTransaction fragmentTransaction3 = fragmentManager.beginTransaction();
+                fragmentTransaction3.replace(R.id.content, dailyWorkout, "");
+                fragmentTransaction3.commit();
+            }
+        });
+        crdSchdules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new instance of your exercise fragment
+                schedulesfrags schedulesFrags = new schedulesfrags();
+
+                // Begin a new fragment transaction and replace the current fragment with your exercise fragment
+                FragmentTransaction fragmentTransaction3 = fragmentManager.beginTransaction();
+                fragmentTransaction3.replace(R.id.content, schedulesFrags, "");
+                fragmentTransaction3.commit();
+            }
+        });
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exercisefrags, container, false);
+        return view;
     }
 }

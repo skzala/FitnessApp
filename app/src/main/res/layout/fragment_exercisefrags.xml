@@ -20,6 +20,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/crdDailyWorkout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
@@ -61,6 +62,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/crdSchedules"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
@@ -102,6 +104,7 @@
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/crdCustom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"
