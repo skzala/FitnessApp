@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.skzala.fitnessapp.dailyWokout.dailyWorkout;
 
@@ -103,6 +104,13 @@ public class exercisefrags extends Fragment {
             }
         });
 
+        crdCustomize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activity, "The Feature You are Trying to Access is Very PREMIUM", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "To Premium That I can't Let You Purchase IT", Toast.LENGTH_SHORT).show();
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }

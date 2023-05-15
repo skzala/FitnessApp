@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.skzala.fitnessapp.dailyWokout.dailyWorkoutModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,6 +60,7 @@ public class loginscreen extends AppCompatActivity {
 
         if(check.equals("1")){
             startActivity(new Intent(loginscreen.this,MainActivity.class));
+            finish();
         }
 
         getWindow().getDecorView().setSystemUiVisibility(
@@ -120,24 +122,41 @@ public class loginscreen extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if(response.equals("Login successful!")){
-                    progressDialog.dismiss();
 
-                    // Check if the checkbox is checked
-                    if (checkBox.isChecked()) {
-                       // checkBox.setText("New Text");
+                try {
+
+                    JSONObject jsonObject = new JSONObject(response);
+                        // Toast.makeText(mContext, jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                       String flag =  jsonObject.getString("success");
+                       String id =  jsonObject.getString("id");
+
+                    if(flag.equals("true")){
+                        progressDialog.dismiss();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("loggedin", "1");
-                        editor.apply();
+                        editor.putString("user_id", id);
+                        editor.putString("user_name", username);
+                        // Check if the checkbox is checked
+                        if (checkBox.isChecked()) {
+                            // checkBox.setText("New Text");
+                            editor.putString("loggedin", "1");
+                            editor.apply();
+                        }
+                        startActivity(new Intent(loginscreen.this,MainActivity.class));
+                        finish();
                     }
-                    startActivity(new Intent(loginscreen.this,MainActivity.class));
-                    finish();
+
+                    else{
+                        progressDialog.dismiss();
+                        Toast.makeText(loginscreen.this, "The user Data Not found", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
 
-                else{
-                    progressDialog.dismiss();
-                    Toast.makeText(loginscreen.this, response, Toast.LENGTH_SHORT).show();
-                }
+
             }
         }, new Response.ErrorListener() {
             @Override

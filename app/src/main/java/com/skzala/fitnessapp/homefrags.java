@@ -81,6 +81,8 @@ public class homefrags extends Fragment {
 
         // Find your CardView objects by their IDs
         crdWorkout = view.findViewById(R.id.crdWorkouts);
+        crdPtracking = view.findViewById(R.id.crdTracking);
+        crdCounter = view.findViewById(R.id.crdCounter);
 
         // Set an onClickListener for each CardView object
         crdWorkout.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +98,30 @@ public class homefrags extends Fragment {
             }
         });
 
+        crdPtracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new instance of your exercise fragment
+                TrackingFrag trackingFrag = new TrackingFrag();
+
+                // Begin a new fragment transaction and replace the current fragment with your exercise fragment
+                FragmentTransaction fragmentTransaction3 = fragmentManager.beginTransaction();
+                fragmentTransaction3.replace(R.id.content, trackingFrag, "");
+                fragmentTransaction3.commit();
+            }
+        });
+        crdCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Create a new instance of your exercise fragment
+                counterFrag counterfrag = new counterFrag();
+
+                // Begin a new fragment transaction and replace the current fragment with your exercise fragment
+                FragmentTransaction fragmentTransaction3 = fragmentManager.beginTransaction();
+                fragmentTransaction3.replace(R.id.content, counterfrag, "");
+                fragmentTransaction3.commit();
+            }
+        });
         return view;
     }
 
