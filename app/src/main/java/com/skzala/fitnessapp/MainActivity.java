@@ -26,12 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-// Hide the navigation bar and make the app full-screen
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                      );
-
         actionBar = getSupportActionBar();
         actionBar.setTitle("Profile Activity");
         actionBar.setElevation(16);

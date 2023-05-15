@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:elevation="50dp"
     android:fadingEdgeLength="100dp"
-    tools:context=".loginscreen">
+    tools:context=".RegisterActivity">
 
     <VideoView
         android:id="@+id/videoView"
@@ -68,6 +68,16 @@
                         android:textColorHint="@color/Greenblue" />
 
                     <EditText
+                        android:id="@+id/edtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/teaGreen"
+                        android:textColorHighlight="@color/Greenblue"
+                        android:textColorHint="@color/Greenblue" />
+
+                    <EditText
                         android:id="@+id/editTextPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -76,13 +86,6 @@
                         android:textColor="@color/teaGreen"
                         android:textColorHighlight="@color/Greenblue"
                         android:textColorHint="@color/Greenblue" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Remeber Me!"
-                        android:textColor="@color/Greenblue" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -124,15 +127,6 @@
                             android:textColor="@color/teaGreen" />
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/txtHint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:foregroundGravity="center"
-                        android:text="Hint*"
-                        android:textColor="@color/dark_green"
-                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -143,7 +137,7 @@
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="120dp"
                 app:layout_constraintBottom_toTopOf="@+id/cardView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

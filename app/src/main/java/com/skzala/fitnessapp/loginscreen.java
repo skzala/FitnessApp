@@ -37,7 +37,7 @@ public class loginscreen extends AppCompatActivity {
 
     String username,password;
     EditText edtusername,edtpassword;
-    Button btnLogin;
+    Button btnLogin,btnRegister;
     TextView txtHint;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
@@ -63,10 +63,7 @@ public class loginscreen extends AppCompatActivity {
             finish();
         }
 
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+
 
         try {
             VideoView videoView = findViewById(R.id.videoView);
@@ -87,6 +84,7 @@ public class loginscreen extends AppCompatActivity {
         edtusername = findViewById(R.id.editTextUsername);
         edtpassword = findViewById(R.id.editTextPassword);
         btnLogin = findViewById(R.id.buttonLogin);
+        btnRegister = findViewById(R.id.btnRegister);
         txtHint = findViewById(R.id.txtHint);
 
         txtHint.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +108,14 @@ public class loginscreen extends AppCompatActivity {
                 }
             }
         });
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(loginscreen.this,RegisterActivity.class));
+
+            }
+        });
 
 
     }
@@ -131,6 +137,7 @@ public class loginscreen extends AppCompatActivity {
                        String id =  jsonObject.getString("id");
 
                     if(flag.equals("true")){
+                        Toast.makeText(loginscreen.this, id, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("user_id", id);
@@ -139,8 +146,8 @@ public class loginscreen extends AppCompatActivity {
                         if (checkBox.isChecked()) {
                             // checkBox.setText("New Text");
                             editor.putString("loggedin", "1");
-                            editor.apply();
                         }
+                        editor.apply();
                         startActivity(new Intent(loginscreen.this,MainActivity.class));
                         finish();
                     }
