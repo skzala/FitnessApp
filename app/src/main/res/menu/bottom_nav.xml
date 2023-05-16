@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/nav_achiv"
-        android:icon="@drawable/achivements"
-        android:title="Gains" />
-    <item
-        android:id="@+id/nav_socials"
-        android:icon="@drawable/socials"
-        android:title="Feed" />
+
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/home"
         android:title="Home" />
-
     <item
         android:id="@+id/nav_exercise"
         android:icon="@drawable/exercise"
         android:title="Workouts" />
     <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/settings"
-        android:title="Settings" />
+        android:id="@+id/nav_cal"
+        android:icon="@drawable/calories"
+        android:title="Cal Counter" />
+    <item
+        android:id="@+id/nav_track"
+        android:icon="@drawable/trackimg"
+        android:title="Tracker" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
 
 </menu>

@@ -137,7 +137,7 @@ public class loginscreen extends AppCompatActivity {
                        String id =  jsonObject.getString("id");
 
                     if(flag.equals("true")){
-                        Toast.makeText(loginscreen.this, id, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(loginscreen.this, id, Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("user_id", id);

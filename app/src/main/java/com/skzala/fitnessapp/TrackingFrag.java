@@ -126,7 +126,7 @@ public class TrackingFrag extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
                 try {
                   //  Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
                     JSONArray array = new JSONArray(response);
