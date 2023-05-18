@@ -1,6 +1,7 @@
 package com.skzala.fitnessapp.dailyWokout;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -51,8 +52,9 @@ public class dailyWorkout extends Fragment {
     private dailyWorkoutAdepter dailyAdepter;
     private List<dailyWorkoutModel> dailyList;
     private Context mContext;
-    String wName,wTyp,day;
+    String wName,wTyp,day,user_id;
     TextView txtName,txtTyp,txtDay;
+    SharedPreferences sharedPreferences;
     public dailyWorkout() {
         // Required empty public constructor
     }
@@ -82,6 +84,7 @@ public class dailyWorkout extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sharedPreferences = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -89,7 +92,7 @@ public class dailyWorkout extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_daily_workout, container, false);
         mContext = getContext();
-
+        user_id = sharedPreferences.getString("user_id", "0");
         //dailyWorkoutAdepter adapter = new dailyWorkoutAdepter(getActivity());
 
         // Initialize RecyclerView and adapter
@@ -129,12 +132,26 @@ public class dailyWorkout extends Fragment {
                     wName=jsonObject.getString("workout_name");
                     wTyp=jsonObject.getString("training_type");
                     day=jsonObject.getString("day");
-                    dailyList.add(new dailyWorkoutModel(1, "Excercise 1 :-", jsonObject.getString("exercise1")));
-                    dailyList.add(new dailyWorkoutModel(2, "Excercise 2 :-", jsonObject.getString("exercise2")));
-                    dailyList.add(new dailyWorkoutModel(3, "Excercise 3 :-", jsonObject.getString("exercise3")));
-                    dailyList.add(new dailyWorkoutModel(4, "Excercise 4 :-", jsonObject.getString("exercise4")));
-                    dailyList.add(new dailyWorkoutModel(5, "Excercise 5 :-", jsonObject.getString("exercise5")));
-                    dailyList.add(new dailyWorkoutModel(6, "Excercise 6 :-", jsonObject.getString("exercise6")));
+
+                    for(int i = 1 ;i<=10;i++){
+
+                        String ex = "exercise"+i;
+                        if(!jsonObject.getString(ex).equalsIgnoreCase("null")||!jsonObject.getString(ex).equalsIgnoreCase("un")){
+                            dailyList.add(new dailyWorkoutModel(i, "Excercise "+i+" :-", jsonObject.getString(ex)));
+                        }
+
+                    }
+
+//                    dailyList.add(new dailyWorkoutModel(1, "Excercise 1 :-", jsonObject.getString("exercise1")));
+//                    dailyList.add(new dailyWorkoutModel(2, "Excercise 2 :-", jsonObject.getString("exercise2")));
+//                    dailyList.add(new dailyWorkoutModel(3, "Excercise 3 :-", jsonObject.getString("exercise3")));
+//                    dailyList.add(new dailyWorkoutModel(4, "Excercise 4 :-", jsonObject.getString("exercise4")));
+//                    dailyList.add(new dailyWorkoutModel(5, "Excercise 5 :-", jsonObject.getString("exercise5")));
+//                    dailyList.add(new dailyWorkoutModel(6, "Excercise 6 :-", jsonObject.getString("exercise6")));
+//                    dailyList.add(new dailyWorkoutModel(6, "Excercise 7 :-", jsonObject.getString("exercise7")));
+//                    dailyList.add(new dailyWorkoutModel(6, "Excercise 8 :-", jsonObject.getString("exercise8")));
+//                    dailyList.add(new dailyWorkoutModel(6, "Excercise 9 :-", jsonObject.getString("exercise9")));
+//                    dailyList.add(new dailyWorkoutModel(6, "Excercise 10 :-", jsonObject.getString("exercise10")));
                     // Notify the adapter that the data has changed
                     dailyAdepter.notifyDataSetChanged();
 
@@ -157,7 +174,7 @@ public class dailyWorkout extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("username", username);
+                params.put("user_id", user_id);
 //                params.put("password", password);
                 return params;
             }

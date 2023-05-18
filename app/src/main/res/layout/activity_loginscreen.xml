@@ -130,7 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:foregroundGravity="center"
-                        android:text="Hint*"
+                        android:text="Made By Skzala Studios"
                         android:textColor="@color/dark_green"
                         android:textSize="12sp" />
 

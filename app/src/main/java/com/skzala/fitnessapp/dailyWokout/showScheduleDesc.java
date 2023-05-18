@@ -81,13 +81,14 @@ public class showScheduleDesc extends AppCompatActivity {
                     wName=jsonObject.getString("workout_name");
                     wTyp=jsonObject.getString("training_type");
                     day=jsonObject.getString("day");
-                    dailyList.add(new dailyWorkoutModel(1, "Excercise 1 :-", jsonObject.getString("exercise1")));
-                    dailyList.add(new dailyWorkoutModel(2, "Excercise 2 :-", jsonObject.getString("exercise2")));
-                    dailyList.add(new dailyWorkoutModel(3, "Excercise 3 :-", jsonObject.getString("exercise3")));
-                    dailyList.add(new dailyWorkoutModel(4, "Excercise 4 :-", jsonObject.getString("exercise4")));
-                    dailyList.add(new dailyWorkoutModel(5, "Excercise 5 :-", jsonObject.getString("exercise5")));
-                    dailyList.add(new dailyWorkoutModel(6, "Excercise 6 :-", jsonObject.getString("exercise6")));
-                    // Notify the adapter that the data has changed
+                    for(int i = 1 ;i<=10;i++){
+
+                        String ex = "exercise"+i;
+                        if(!jsonObject.getString(ex).equalsIgnoreCase("null")||!jsonObject.getString(ex).equalsIgnoreCase("")){
+                            dailyList.add(new dailyWorkoutModel(i, "Excercise "+i+" :-", jsonObject.getString(ex)));
+                        }
+
+                    }
                     dailyAdepter.notifyDataSetChanged();
 
 

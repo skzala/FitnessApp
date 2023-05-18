@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         homefrags homeFragment = new homefrags();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         navigationView.setSelectedItemId(R.id.nav_home);
+
         fragmentTransaction.replace(R.id.content, homeFragment, "");
         fragmentTransaction.commit();
     }

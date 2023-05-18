@@ -107,8 +107,12 @@ public class exercisefrags extends Fragment {
         crdCustomize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(activity, "The Feature You are Trying to Access is Very PREMIUM", Toast.LENGTH_SHORT).show();
-                Toast.makeText(activity, "To Premium That I can't Let You Purchase IT", Toast.LENGTH_SHORT).show();
+                customworkoutFrag customworkoutfrag = new customworkoutFrag();
+
+                // Begin a new fragment transaction and replace the current fragment with your exercise fragment
+                FragmentTransaction fragmentTransaction3 = fragmentManager.beginTransaction();
+                fragmentTransaction3.replace(R.id.content, customworkoutfrag, "");
+                fragmentTransaction3.commit();
             }
         });
         // Inflate the layout for this fragment

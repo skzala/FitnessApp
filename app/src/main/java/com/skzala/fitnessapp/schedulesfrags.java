@@ -1,6 +1,7 @@
 package com.skzala.fitnessapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -51,6 +52,8 @@ public class schedulesfrags extends Fragment {
     private RecyclerView recyclerView;
     private dailyWorkoutAdepter dailyAdepter;
     private List<dailyWorkoutModel> dailyList;
+    String user_id;
+    SharedPreferences sharedPreferences;
     public schedulesfrags() {
         // Required empty public constructor
     }
@@ -80,6 +83,8 @@ public class schedulesfrags extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        sharedPreferences = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+
     }
 
     @Override
@@ -90,6 +95,8 @@ public class schedulesfrags extends Fragment {
 
         mContext = getContext();
 
+
+        user_id = sharedPreferences.getString("user_id", "0");
 // Initialize RecyclerView and adapter
         recyclerView = view.findViewById(R.id.rwSchedules);
         dailyList = new ArrayList<>();
@@ -122,7 +129,7 @@ public class schedulesfrags extends Fragment {
                       //  Toast.makeText(mContext, i, Toast.LENGTH_SHORT).show();
                         JSONObject jsonObject = array.getJSONObject(i);
                    // Toast.makeText(mContext, jsonObject.toString(), Toast.LENGTH_SHORT).show();
-                        dailyList.add(new dailyWorkoutModel(0, jsonObject.getString("workout_id"), jsonObject.getString("workout_name")));
+                        dailyList.add(new dailyWorkoutModel(0, Integer.toString(i+1), jsonObject.getString("workout_name")));
 
                     }
                     dailyAdepter.notifyDataSetChanged();
@@ -142,7 +149,7 @@ public class schedulesfrags extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-//                params.put("username", username);
+                params.put("user_id", user_id);
 //                params.put("password", password);
                 return params;
             }

@@ -90,7 +90,14 @@ public class loginscreen extends AppCompatActivity {
         txtHint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(loginscreen.this, "Username:-john123\nPassword:-password1", Toast.LENGTH_LONG).show();
+
+                String url = "https://www.skzala.com";
+
+// Create an intent with the ACTION_VIEW action and the URL as data
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+
+
             }
         });
 

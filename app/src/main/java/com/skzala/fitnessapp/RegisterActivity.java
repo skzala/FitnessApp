@@ -9,7 +9,10 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +58,26 @@ public class RegisterActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.buttonLogin);
         btnRegister = findViewById(R.id.btnRegister);
 
+//        InputFilter emailFilter = new InputFilter() {
+//            @Override
+//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                String input = dest.subSequence(0, dstart) + source.toString() + dest.subSequence(dend, dest.length());
+//                if (end > start) {
+//                    // User is still typing, allow any input
+//                    return null;
+//                } else {
+//                    // User has finished typing, validate as email address
+//                    if (!Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
+//                        return "";
+//                    }
+//                }
+//                return null;
+//            };
+//        };
+//        //edtemail.setFilters(new InputFilter[] { emailFilter });
+
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,14 +90,16 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                email = edtemail.getText().toString().trim();
                 if(TextUtils.isEmpty(edtpassword.getText().toString())||TextUtils.isEmpty(edtemail.getText().toString())||TextUtils.isEmpty(edtusername.getText().toString())){
                     Toast.makeText(RegisterActivity.this, "enter Details", Toast.LENGTH_SHORT).show();
-                }else{
+                } else if (!isValidEmail(email)) {
+                    Toast.makeText(RegisterActivity.this, "Enter Valid Email", Toast.LENGTH_SHORT).show();
+                } else{
 
-                    username = edtusername.getText().toString();
-                    email = edtemail.getText().toString();
-                    password = edtpassword.getText().toString();
+                    username = edtusername.getText().toString().trim();
+                    email = edtemail.getText().toString().trim();
+                    password = edtpassword.getText().toString().trim();
 
                     Intent intent = new Intent(RegisterActivity.this, RegisterData.class);
 
@@ -90,4 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
     }
+    private boolean isValidEmail(CharSequence email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
 }
