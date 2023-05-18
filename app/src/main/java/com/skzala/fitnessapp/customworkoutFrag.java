@@ -91,16 +91,7 @@ public class customworkoutFrag extends Fragment {
         user_id = sharedPreferences.getString("user_id", "0");
 
         btnSave = view.findViewById(R.id.btnSave);
-        btnex1 = view.findViewById(R.id.btnex1);
-        btnex2 = view.findViewById(R.id.btnex2);
-        btnex3 = view.findViewById(R.id.btnex3);
-        btnex4 = view.findViewById(R.id.btnex4);
-        btnex5 = view.findViewById(R.id.btnex5);
-        btnex6 = view.findViewById(R.id.btnex6);
-        btnex7 = view.findViewById(R.id.btnex7);
-        btnex8 = view.findViewById(R.id.btnex8);
-        btnex9 = view.findViewById(R.id.btnex9);
-        btnex10 = view.findViewById(R.id.btnex10);
+
 
         edtname = view.findViewById(R.id.edtName);
         edttyp = view.findViewById(R.id.edtType);

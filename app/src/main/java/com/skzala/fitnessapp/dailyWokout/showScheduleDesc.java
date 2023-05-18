@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +33,9 @@ public class showScheduleDesc extends AppCompatActivity {
     private RecyclerView recyclerView;
     private dailyWorkoutAdepter dailyAdepter;
     private List<dailyWorkoutModel> dailyList;
-    String wName,wTyp,day,name;
+    String wName,wTyp,day,name,user_id;
     TextView txtName,txtTyp,txtDay;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,8 @@ public class showScheduleDesc extends AppCompatActivity {
 
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
-
+        sharedPreferences = getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        user_id = sharedPreferences.getString("user_id", "0");
 
         // Initialize RecyclerView and adapter
         recyclerView = findViewById(R.id.rwDailyWorkout);
@@ -112,6 +115,7 @@ public class showScheduleDesc extends AppCompatActivity {
                 Map<String, String> params = new HashMap<>();
 //                params.put("username", username);
                 params.put("workoutName", name);
+                params.put("userID", user_id);
                 return params;
             }
         };
